@@ -1,13 +1,8 @@
-const { chromium } = require('playwright');
+const EventSource = require('eventsource');
 
-(async () => {
-  const browser = await chromium.launch(); // Launch a Chromium browser instance
-  const page = await browser.newPage(); // Open a new page
+const eventSource = new EventSource('https://www.chess.com/service/presence/watch/users?ids=2dba766c-fb3e-11ea-b924-8577032ce688');
+// const eventSource = new EventSource(url);
 
-  await page.goto('https://example.com'); // Navigate to a URL
-  console.log(await page.title()); // Output the title of the page
-
-  // Perform other actions, such as clicking buttons or filling out forms
-
-  await browser.close(); // Close the browser instance
-})();
+eventSource.onmessage = function(event) {
+  console.log('Received event:', event.data);
+};
