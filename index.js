@@ -83,7 +83,7 @@ function createEventSources(urls) {
 }
 
 // Create EventSource objects for each URL
-const eventSources = createEventSources(urls);
+let eventSources = createEventSources(urls);
 
 
 // Interval to recreate EventSource objects periodically
